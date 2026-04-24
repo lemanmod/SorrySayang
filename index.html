@@ -1,0 +1,482 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Apology ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+/* ---------------- GLOBAL ---------------- */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:linear-gradient(120deg,#ff9aa2,#ffc3a0,#ffdde1);
+background-size:400% 400%;
+animation:bgMove 15s infinite alternate;
+overflow-x:hidden;
+color:white;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+100%{background-position:100% 50%;}
+}
+
+/* ---------------- INTRO SCREEN ---------------- */
+
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+z-index:9999;
+cursor:pointer;
+}
+
+#intro h1{
+font-family:'Great Vibes',cursive;
+font-size:60px;
+color:#fff;
+text-shadow:0 0 30px pink;
+}
+
+#intro p{
+opacity:.8;
+}
+
+/* ---------------- HEART BACKGROUND ---------------- */
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:24px;
+animation:floatHeart linear infinite;
+opacity:.7;
+}
+
+@keyframes floatHeart{
+0%{transform:translateY(0) scale(.5)}
+100%{transform:translateY(-110vh) scale(1.5)}
+}
+
+/* ---------------- PETALS ---------------- */
+
+.petal{
+position:fixed;
+width:12px;
+height:12px;
+background:pink;
+border-radius:50% 50% 0 50%;
+opacity:.7;
+animation:petalFall linear infinite;
+}
+
+@keyframes petalFall{
+0%{transform:translateY(-10vh) rotate(0deg)}
+100%{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* ---------------- HERO ---------------- */
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+}
+
+.hero h1{
+font-family:'Great Vibes',cursive;
+font-size:80px;
+text-shadow:0 0 30px white;
+}
+
+.hero p{
+margin-top:10px;
+font-size:20px;
+}
+
+/* ---------------- ENVELOPE ---------------- */
+
+.envelope{
+width:260px;
+height:160px;
+background:#ff6b81;
+margin-top:40px;
+position:relative;
+cursor:pointer;
+border-radius:10px;
+}
+
+.envelope:before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:#ff4757;
+clip-path:polygon(0 0,100% 0,50% 60%);
+transition:.6s;
+}
+
+.envelope.open:before{
+transform:rotateX(180deg);
+}
+
+.letter{
+position:absolute;
+width:90%;
+height:140px;
+background:white;
+top:10px;
+left:5%;
+border-radius:10px;
+padding:10px;
+color:#333;
+transform:translateY(40px);
+opacity:0;
+transition:.6s;
+font-size:14px;
+}
+
+.envelope.open .letter{
+transform:translateY(-60px);
+opacity:1;
+}
+
+/* ---------------- PHOTOS ---------------- */
+
+.gallery{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+padding:80px 20px;
+}
+
+.photo{
+width:220px;
+background:white;
+padding:10px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+transition:.4s;
+}
+
+.photo img{
+width:100%;
+border-radius:8px;
+}
+
+.photo:hover{
+transform:scale(1.1) rotate(-3deg);
+}
+
+/* ---------------- TIMELINE ---------------- */
+
+.timeline{
+max-width:700px;
+margin:auto;
+padding:80px 20px;
+}
+
+.timeline-item{
+margin-bottom:40px;
+background:rgba(255,255,255,.2);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+}
+
+/* ---------------- BUTTON ---------------- */
+
+.forgive{
+padding:16px 40px;
+border:none;
+background:#ff2e63;
+color:white;
+border-radius:40px;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+margin-top:30px;
+}
+
+.forgive:hover{
+transform:scale(1.15);
+}
+
+/* ---------------- MODAL ---------------- */
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+align-items:center;
+justify-content:center;
+background:rgba(0,0,0,.6);
+}
+
+.modal-box{
+background:white;
+padding:40px;
+border-radius:20px;
+color:#333;
+text-align:center;
+}
+
+/* ---------------- MUSIC ---------------- */
+
+.music{
+position:fixed;
+bottom:20px;
+right:20px;
+width:50px;
+height:50px;
+border-radius:50%;
+border:none;
+font-size:20px;
+background:white;
+color:#ff2e63;
+cursor:pointer;
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:48px;
+}
+
+.gallery{
+gap:20px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<div id="intro">
+<h1>For You ❤️</h1>
+<p>Click to enter</p>
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>I'm Sorry My Love ❤️</h1>
+<p>You mean everything to me.</p>
+
+<div class="envelope" onclick="openLetter()" id="env">
+
+<div class="letter" id="letter"></div>
+
+</div>
+
+<button class="forgive" onclick="forgive()">Forgive Me ❤️</button>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="gallery">
+
+<div class="photo">
+<img src="https://i.ibb.co/S7tcdGpw/love.jpg">
+</div>
+
+<div class="photo">
+<img src="https://i.ibb.co/HD7B6NHW/love2.jpg">
+</div>
+
+<div class="photo">
+<img src="https://i.ibb.co/b0m48jv/love3.jpg">
+</div>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section class="timeline">
+
+<div class="timeline-item">Love you sayang.</div>
+
+<div class="timeline-item">I miss you sayang.</div>
+
+<div class="timeline-item">❤️ ALIYA NATASHA ❤️ LEMAN ❤️.</div>
+
+</section>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+<div class="modal-box">
+<h2>Thank You ❤️</h2>
+<p>Thank you for giving me another chance.</p>
+</div>
+</div>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7d3c7c0c9f.mp3">
+</audio>
+
+<button class="music" onclick="toggleMusic()">🎵</button>
+
+<script>
+
+/* ---------------- INTRO ---------------- */
+
+document.getElementById("intro").onclick=()=>{
+document.getElementById("intro").style.display="none"
+document.getElementById("music").play()
+}
+
+/* ---------------- HEARTS ---------------- */
+
+function createHeart(){
+
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+heart.style.animationDuration=(5+Math.random()*5)+"s"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),8000)
+
+}
+
+setInterval(createHeart,400)
+
+/* ---------------- PETALS ---------------- */
+
+function createPetal(){
+
+let p=document.createElement("div")
+p.className="petal"
+
+p.style.left=Math.random()*100+"vw"
+p.style.animationDuration=(8+Math.random()*5)+"s"
+
+document.body.appendChild(p)
+
+setTimeout(()=>p.remove(),12000)
+
+}
+
+setInterval(createPetal,600)
+
+/* ---------------- LETTER ---------------- */
+
+let text=`Sayang...
+
+Maaf kalau abi banyak kekurangan.
+
+Maaf kalau abi tak dapat bawak sayang berjalan.
+
+Abi rindu sangat2. Tapi abi tak macam orang lain
+yang ada macam2.
+
+Tapi abi akan cuba dan usaha,
+Nanti kita akan jumpa ok.
+
+Maafkan abi.
+truly love you ❤️
+`
+
+let i=0
+
+function openLetter(){
+
+document.getElementById("env").classList.add("open")
+
+function type(){
+if(i<text.length){
+document.getElementById("letter").innerHTML+=text.charAt(i)
+i++
+setTimeout(type,40)
+}
+}
+
+type()
+
+}
+
+/* ---------------- FORGIVE ---------------- */
+
+function forgive(){
+
+document.getElementById("modal").style.display="flex"
+
+for(let i=0;i<30;i++){
+createHeart()
+}
+
+}
+
+/* ---------------- MUSIC ---------------- */
+
+function toggleMusic(){
+
+let m=document.getElementById("music")
+
+if(m.paused){m.play()}
+else{m.pause()}
+
+}
+
+/* ---------------- SPARKLE CURSOR ---------------- */
+
+document.addEventListener("mousemove",e=>{
+
+let s=document.createElement("div")
+
+s.style.position="fixed"
+s.style.left=e.clientX+"px"
+s.style.top=e.clientY+"px"
+s.style.width="6px"
+s.style.height="6px"
+s.style.background="white"
+s.style.borderRadius="50%"
+s.style.pointerEvents="none"
+s.style.boxShadow="0 0 10px white"
+
+document.body.appendChild(s)
+
+setTimeout(()=>s.remove(),500)
+
+})
+
+</script>
+
+</body>
+</html>
+```
